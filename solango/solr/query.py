@@ -137,6 +137,9 @@ class Query(dict):
     def items(self):
         temp_list = []
         for key, value in  super(Query, self).items():
+            if key == 'fq':
+                # fq is handled below, doing it here would cause duplicates
+                continue
             if isinstance(value, CleverDict):
                 temp_list.extend(value.items())
             elif isinstance(value, list):
